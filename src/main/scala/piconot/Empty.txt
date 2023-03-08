@@ -1,0 +1,11 @@
+From State 0, if [W: open] -> go W, change to State 0
+From State 0, if [W: blocked] -> go Nowhere, change to State 1
+
+From State 1, if [N: open] -> go N, change to State 1
+From State 1, if [N: blocked, S: open] -> go S, change to State 2
+
+From State 2, if [S: open] -> go S, change to State 2
+From State 2, if [E: open, S: blocked] -> go E, change to State 3
+
+From State 3, if [N: open] -> go N, change to State 3
+From State 3, if [N: blocked, E: open] -> go E, change to State 2

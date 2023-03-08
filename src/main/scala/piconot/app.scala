@@ -1,10 +1,15 @@
+/*
+Written by Ben Wiedermann
+https://github.com/hmc-cs111-spring2023/hw-7-sample-solution/blob/main/src/main/scala/piconot/external/piconot.scala
+*/
+
 import Console.{RED, RESET}
 
 import picolib.maze._
 import picolib.semantics._
 import picolib.display._
 
-import piconot.external.PiconotParser
+import piconot.BotParser
 
 @main
 def main(args: String*) = {
@@ -21,15 +26,15 @@ def main(args: String*) = {
 
   // parse the program file
   val programFilename = args(1)
-  val program = PiconotParser(getFileContents(programFilename))
+  val program = BotParser(getFileContents(programFilename))
 
   // process the results of parsing
   program match {
     // Error handling: syntax errors
-    case e: PiconotParser.NoSuccess => println(error(e.toString))
+    case e: BotParser.NoSuccess => println(error(e.toString))
 
     // If parsing succeeded, create the bot and run it
-    case PiconotParser.Success(t, _) => {
+    case BotParser.Success(t, _) => {
       object bot extends Picobot(maze, program.get) with TextDisplay
       bot.run()
     }
