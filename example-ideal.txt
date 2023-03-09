@@ -1,0 +1,9 @@
+State 0: 
+if [W: open] -> go W, change to State 0
+if [W: blocked] -> stay here, change to State 1
+
+State 1:
+if [N: open] -> go N, change to State 1
+if [N: open, S: blocked] -> go S, don't change State 
+
+
